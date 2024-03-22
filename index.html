@@ -1,0 +1,15 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    var socket = io('http://localhost:5000');
+
+    socket.on('mqtt_message', function(data) {
+      console.log(data);
+      var text = '( Topic' + data['topic'] + ') ' + data['payload'];
+      $('#subscribe_messages').append(text + '<br><br>');
+    })
+  });
+</script>
+
+<div id="subscribe_messages"></div>
